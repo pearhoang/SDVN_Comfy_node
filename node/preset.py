@@ -206,9 +206,9 @@ class auto_generate:
         n_h = int(round(n_h))
         n_w = int(round(n_w))
         rand_seed = random.randint(0, 0xffffffffffffffff)
-        Prompt = ALL_NODE["SDVN Translate"]().ggtranslate(Prompt,"en")[0]
+        Prompt = str(Prompt)
         Prompt = f"{Active_prompt}, {Prompt}"
-        Negative = ALL_NODE["SDVN Translate"]().ggtranslate(Negative,"en")[0]
+        Negative = str(Negative)
         p, n, _ = ALL_NODE["SDVN CLIP Text Encode"]().encode(clip, Prompt, Negative, s.model_para[type_model][1], "None", rand_seed if Random_prompt else seed)
         if image == None:
             latent = ALL_NODE["EmptyLatentImage"]().generate(n_w, n_h, 1)[0]
